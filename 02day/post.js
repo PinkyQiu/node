@@ -1,5 +1,6 @@
 var http = require('http')
-http.createServer(function (req, res) {
+var querystring = require('querystring')
+http.createServer(function(req, res) {
     res.writeHead(200, {
         'Content-type': 'text/html;charset=UTF8'
     })
@@ -10,14 +11,11 @@ http.createServer(function (req, res) {
         })
         req.addListener('end', (chunk) => {
             var datastring = alldata.toString();
-            console.log(alldata.toString())
-            var dataobj = querystring.parse(datastring, null, null, {
-                decodeURIComponent: gbkDecodeURIComponent
-            })
-            console.log(dataobj.name)
+            var dataobj = querystring.parse(datastring)
+            console.log(dataobj)
             console.log(dataobj.sex)
             res.end('success')
         })
     }
 
-}).listen(80, '127.0.0.1');
+}).listen(3000, '127.0.0.1');
