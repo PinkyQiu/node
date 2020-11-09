@@ -16,7 +16,11 @@ app.get('/', router.showIndex);
 
 app.get('/:albumname', router.showAlbum);
 
-app.use(function(req, res) {
+app.get('/up', router.showUp);
+
+app.post('/up', router.doPost);
+
+app.use(function (req, res) {
     res.render('err')
 })
 
